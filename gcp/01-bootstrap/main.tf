@@ -3,10 +3,6 @@
 ######################
 
 terraform {
-  backend "gcs" {
-    bucket      = var.gcs_tf_state_bucket
-    prefix      = "terraform/state/level-0/gcp-bootstrap"
-  }
   required_providers {
     google = {
       source  = "hashicorp/google"
