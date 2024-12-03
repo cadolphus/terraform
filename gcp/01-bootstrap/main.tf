@@ -66,3 +66,22 @@ output "vpc_id" {
   value = google_compute_network.vpc.id
 }
 
+#############
+## SUBNETS ##
+#############
+
+# Create all subnets by using the for_each operator to iterate through the vpc_subnets variable map
+resource "google_compute_subnetwork" "subnets" {
+  for_each                 = var.vpc_subnets
+
+  name                     = "tf${local.prefix}-${each.key}"
+  ip_cidr_range            = each.value["ip_cidr_range"]
+  region                   = each.value["region"]
+  network                  = google_compute_network.vpc.id
+  private_ip_google_access = each.value["private_ip_google_access"]
+}
+
+# Create an output variable of the subnets so they can be referenced/used by other modules
+output "all_subnets" {
+  value = google_compute_subnetwork.subnets
+}
