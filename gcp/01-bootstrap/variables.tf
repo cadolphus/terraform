@@ -14,10 +14,6 @@ variable "gcp_zone" {
   type = string
   description = "Enter the default GCP zone to use for this script - Eg: australia-southeast1-b"
 }
-variable "gcs_tf_state_bucket" {
-  type = string
-  description = "Enter the default GCP zone to use for this script - Eg: australia-southeast1-b"
-}
 variable "vpc_name" {
   type = string
   description = "Enter the name to use when creating the VPC Network for this bootstrap - Eg: vpc-dev"
