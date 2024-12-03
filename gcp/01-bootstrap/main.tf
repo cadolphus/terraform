@@ -54,6 +54,7 @@ output "rand_prefix_hex" {
 # Create an empty VPC network (without any subnets, routes, or firewall rules)
 resource "google_compute_network" "vpc" {
   name                    = "tf${local.prefix}-${var.vpc_name}"
+  description             = "Created via Infrastructure Manager"
   auto_create_subnetworks = false
   routing_mode            = var.vpc_routing_mode
   mtu                     = var.vpc_mtu
@@ -75,6 +76,7 @@ resource "google_compute_subnetwork" "subnets" {
   for_each                 = var.vpc_subnets
 
   name                     = "tf${local.prefix}-${each.key}"
+  description              = "Created via Infrastructure Manager"
   ip_cidr_range            = each.value["ip_cidr_range"]
   region                   = each.value["region"]
   network                  = google_compute_network.vpc.id
