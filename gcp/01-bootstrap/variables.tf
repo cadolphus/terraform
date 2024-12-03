@@ -28,3 +28,6 @@ variable "vpc_mtu" {
   description = "Enter the MTU to use for this VPC - between 1460 and 1500 inclusive. If set to 0 (meaning MTU is unset), the network will default to 1460 automatically."
   default = 0
 }
+variable "vpc_subnets" {
+  description = "Enter all the VPC subnets as a list of objects, each of which contain only strings"
+}
